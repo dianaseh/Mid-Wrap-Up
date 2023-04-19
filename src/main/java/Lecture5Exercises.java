@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Lecture5Exercises {
 
     /*
@@ -6,7 +8,13 @@ public class Lecture5Exercises {
      *   lecture 5 page 14
      */
     public String weakPassword(int length) {
-        return null;
+        String password ="";
+        for(int i=0 ; i<length ; i++){
+            Random rnd = new Random();
+            char c = (char) ('a' + rnd.nextInt(26));
+            password += String.valueOf(c);
+        }
+        return password;
     }
 
     /*
@@ -15,7 +23,14 @@ public class Lecture5Exercises {
      *   lecture 5 page 14
      */
     public String strongPassword(int length) throws Exception {
-        return null;
+        Random rand = new Random();
+        String nums = "0123456789";
+        String spchars = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
+        String res = "";
+        res += String.valueOf(nums.charAt(rand.nextInt(nums.length())));
+        res += String.valueOf(spchars.charAt(rand.nextInt(spchars.length())));
+        res += weakPassword(length-2);
+        return res;
     }
 
     /*
@@ -27,6 +42,28 @@ public class Lecture5Exercises {
      *   lecture 5 page 17
      */
     public boolean isFiboBin(int n) {
-        return false;
+        boolean flag = false ;
+        for(int i=0 ; i<n ; i++){
+            if(fib(i)+bin(fib(i)) == n )
+                flag = true ;
+        }
+        return flag;
+    }
+    public int fib(int n) {
+        if(n<=1)
+            return n;
+        else {
+            return fib(n-1)+fib(n-2);
+        }
+    }
+    public int bin(int i ){
+        String bin = Integer.toBinaryString(i);
+        int res=0;
+        for(int j=0 ; j<bin.length() ; j++){
+            if(bin.charAt(j) == '1')
+                res++;
+
+        }
+        return res ;
     }
 }

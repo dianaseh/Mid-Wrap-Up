@@ -1,3 +1,6 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Lecture6Exercises {
@@ -8,7 +11,12 @@ public class Lecture6Exercises {
      *   lecture 6 page  16
      */
     public long calculateEvenSum(int[] arr) {
-        return 0L;
+        long sum = 0 ;
+        for(int i =0 ; i<arr.length ; i++){
+            if(i%2 == 0 )
+                sum += arr[i];
+        }
+        return sum ;
     }
 
     /*
@@ -17,7 +25,12 @@ public class Lecture6Exercises {
      *   lecture 6 page 16
      */
     public int[] reverseArray(int[] arr) {
-        return null;
+        Arrays.sort(arr);
+        int [] res = new int[arr.length];
+        for(int i = 0 ; i<arr.length ; i++){
+            res[i] = arr[arr.length-1-i] ;
+        }
+        return res ;
     }
 
     /*
@@ -25,7 +38,15 @@ public class Lecture6Exercises {
      *   lecture 6 page 21
      */
     public double[][] matrixProduct(double[][] m1, double[][] m2) throws RuntimeException {
-        return null;
+        double[][] prod = new double[m1.length][m2[0].length];
+        for(int i = 0 ; i<m1.length ; i++){
+            for(int j = 0 ; j<m2[0].length ; j++ ){
+                for(int k=0 ; k<m1[0].length ; k++){
+                    prod[i][j] += m1[i][k] * m2[k][j];
+                }
+            }
+        }
+        return prod ;
     }
 
     /*
@@ -43,7 +64,15 @@ public class Lecture6Exercises {
      *   lecture 6 page 30
      */
     public List<Integer> primeFactors(int n) {
-        return null;
+        List<Integer> res = new ArrayList<>();
+        for(int i = 2 ; i<=n ; i++){
+            if(n%i == 0 ){
+                res.add(i);
+                while(n%i == 0 )
+                    n /= i;
+            }
+        }
+        return res;
     }
 
     /*
@@ -51,6 +80,9 @@ public class Lecture6Exercises {
      *   lecture 6 page 30
      */
     public List<String> extractWord(String line) {
-        return null;
+        String[] strarr = line.split(" ");
+        List<String> res = new ArrayList<String> ();
+        res = Arrays.asList(strarr);
+        return res;
     }
 }
